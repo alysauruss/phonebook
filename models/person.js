@@ -5,7 +5,7 @@ mongoose.set('strictQuery', false)
 const url = process.env.MONGODB_URI
 
 console.log('connecting to', url)
-mongoose.connect(url, { family: 4 }) // force IPv4 to avoid connection issues
+mongoose.connect(url, { family: 4 })
     .then(result => {
         console.log('connected to MongoDB')
     })
@@ -20,9 +20,9 @@ const phoneBookSchema = new mongoose.Schema({
 
 phoneBookSchema.set('toJSON', {
     transform: (document, returnedObject) => {
-        returnedObject.id = returnedObject._id.toString() // expose _id as a plain string id
-        delete returnedObject._id  // remove the mongo internal _id field
-        delete returnedObject.__v  // remove the mongo versioning field
+        returnedObject.id = returnedObject._id.toString()
+        delete returnedObject._id
+        delete returnedObject.__v
     }
 })
 
